@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment 9 Joke API</title>
+</head>
+<body>
+    <h1>Joke API App</h1>
+
+    <button id="btn">Joke</button>
+    <p>Your joke will appear below when you press the button</p>
+    <h2 id="setup"></h2>
+    <br></br>
+    <h2 id="punchline"></h2>
+
+    <script>
+        const btn = document.querySelector('#btn')
+        const setup = document.querySelector('#setup')
+        const punchline = document.querySelector('#punchline')
+
+        btn.addEventListener('click', async () => {
+            const response = await fetch('/api/v1/random-joke')
+            const data = await response.json()
+
+            setup.textContent = data.joke
+            punchline.textContent = data.punchline
+        })
+    </script>
+</body>
+</html>
